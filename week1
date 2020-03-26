@@ -1,0 +1,45 @@
+http://data.baltimorecity.gov/
+
+file.exists("DirName") #Verify if the dirctory existis
+dir.create("DirName") #Create the directory if doesn't exists
+
+#if the directory doesn't exists, create it
+
+if (!file.exists("data"){
+dir.create("data")
+}
+
+
+#downloading files from internet
+
+download.file()
+
+#Example: Baltimore transortation data, fixed speed cameras
+https://data.baltimorecity.gov/Transportation/Baltimore-Fixed-Speed-Cameras/dz54-2aru
+
+#DOWNLOADING .CSV
+## Label the url as 'fileUrl'
+fileUrl <- "https://data.baltimorecity.gov/api/views/dz54-2aru/rows.csv?accessType=DOWNLOAD"
+
+## Download file 'download.file( url, destfile = destination, method = )'
+download.file(fileUrl, destfile = "~/Coursera/DataCleaning/camera.csv", method = "curl") ## Curl method is necessary because the site is http
+list.files("~/Coursera/DataCleaning")
+
+## Files in the internet may change, save the date when your data was downloaded
+
+dateDownloaded <-date()
+dateDownloaded
+[1] "Thu Mar 26 11:48:04 2020"
+
+#READING
+cameraData <- read.table("~/Coursera/DataCleaning/camera.csv", sep = ",", header = TRUE) #reads the data and put into 'cameraData'
+
+#sep "," is needed because is a .csv (comma separeted)
+#header names of the columns
+
+head(cameraData) #reads the first rows from the data
+
+#it could be done using read.csv()
+
+cameraData2 <- read.csv("~/Coursera/DataCleaning/camera.csv")
+head(cameraData2)

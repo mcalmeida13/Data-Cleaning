@@ -43,3 +43,15 @@ head(cameraData) #reads the first rows from the data
 
 cameraData2 <- read.csv("~/Coursera/DataCleaning/camera.csv")
 head(cameraData2)
+
+#READING EXCEL
+
+library(xlsx)
+cameraData <-read.xlsx("~/Coursera/DataCleaning/camera.xlsx", sheetIndex = 1, header = TRUE)
+
+#Subsetting
+
+colIndex <- 2:3
+rowIndex <- 1:4
+cameraDataSubset <- read.xlsx("~/Coursera/DataCleaning/camera.xlsx", sheetIndex = 1, colIndex = colIndex, rowIndex = rowIndex)
+cameraDataSubset

@@ -51,7 +51,43 @@ cameraData <-read.xlsx("~/Coursera/DataCleaning/camera.xlsx", sheetIndex = 1, he
 
 #Subsetting
 
-colIndex <- 2:3
-rowIndex <- 1:4
+colIndex <- 2:3 #2nd and 3rd columns
+rowIndex <- 1:4 #1st to 4th rows
 cameraDataSubset <- read.xlsx("~/Coursera/DataCleaning/camera.xlsx", sheetIndex = 1, colIndex = colIndex, rowIndex = rowIndex)
 cameraDataSubset
+
+## data.table Package
+
+library(data.table)
+DF <- data.frame(x=rnorm(9), y=rep(c("a","b","c"), each = 3), z = rnorm(9))
+DF
+
+head(DF,3)
+
+DT <- data.table(x=rnorm(9), y=rep(c("a","b","c"), each = 3), z = rnorm(9))
+DT
+
+head(DT,3)
+
+##Subseting
+
+DT[2,] #2nd row
+DT$y # y column
+DT$y == "a" # y column where y = a
+DT[DT$y == "a",] #rows with y =a
+
+DT[c(2,3)] #2nd and 3rd elemnt of each row and column
+
+## Adding a new column "w:= 'command'"
+
+DT[,w:= y]
+DT
+
+## Multiple operation
+
+DT[,m :={tmp <- (x+z); log2(tmp)}]
+
+DT[, a:= is.nan(m)]
+DT
+
+

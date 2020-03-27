@@ -1,0 +1,42 @@
+# set.seed function in R is used to reproduce results i.e.  it produces the same sample again and again. 
+# When we generate randoms numbers without set.seed() function it will produce different samples at different time of execution. 
+# let see how to generate stable sample of random numbers with set.seed() function in R with example
+
+set.seed(1234)
+X <- data.frame("var1"= sample(1:5),"var2"=sample(6:10), "var3" = sample(11:15))
+X <- X[sample(1:5),]; #mix the order of the rows
+X$var2[[c(1,3)] = NA #put some NAs
+X
+
+#Subsetting
+X[,1] #select first column
+
+X[,"var1"] #also select first column
+
+X[1:2,"var2"] #select 1st and 2nd rows from second column
+
+
+X[(X$var1 <= 3 & X$var3 >11 ),] #elements of the 1st row smaller AND equal to 3 and elements of 3rd column bigger than 11
+X[(X$var1 >= 3 & X$var3 >11 ),]
+X[(X$var1 <= 3 & X$var3 >15 ),]
+X[(X$var1 <= 3| X$var3 >15 ),] #elements of the 1st row smaller OR equal to 3 and elements of 3rd column bigger than 15
+
+
+X[which(X$var2>8),]
+
+sort(X$var1) #organize in increasing order
+sort(X$var1, decreasing = TRUE) #organize in decreasing order
+sort(X$var2, na.last = TRUE) #put the NA in the last position
+
+X[order(X$var1),] #organize the data frame respecting the increasing order of the first columns
+
+library(plyr)
+
+arrange(X, var1) #does the same
+
+arrange(X,desc(var1))
+
+## Adding rows
+
+X$var4 <- rnorm(5)
+X

@@ -40,3 +40,9 @@ arrange(X,desc(var1))
 
 X$var4 <- rnorm(5)
 X
+
+Y <- cbind(X, rnorm(5))
+Y
+
+Z <- rbind(X, rnorm(5)) ## Add a row
+Z

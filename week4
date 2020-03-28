@@ -1,0 +1,85 @@
+cameraData <- read.table("~/Coursera/DataCleaning/camera.csv", sep = ",", header = TRUE) #reads the data and put into 'cameraData'
+namecol <- names(cameraData)
+namecol
+tolower(namecol) #low the characters
+splitNames = strsplit(namecol, "\\.")
+splitNames[[6]]
+splitNames[[7]]
+
+
+mylist <- list(letters = c("A","b","c"), numbers = 1:3, matrix(1:25, ncol = 5))
+head(mylist)
+
+# mylist[1] = mylist$letters
+mylist[1]
+
+mylist$letters
+
+mylist[[1]]
+
+
+firstElement <- function(x){x[1]}
+sapply(splitNames,firstElement)
+
+camera <- read.csv("camera.csv")
+head(camera,2)
+
+names(camera)
+sub(".","_",names(camera),)
+
+testname <- "this_is_a_test"
+sub("_",".",testname,)#substitutes first "_" for "."
+
+gsub("_",".",testname,) #substitutes all "_" for "."
+
+grep("Alameda",camera$intersection)
+#grep(), which returns a vector of indices of the character strings that contains the pattern.
+alamendal <- grepl("Alameda",camera$intersection)
+#grepl(), which returns TRUE when a pattern is found in the corresponding character string.
+table(alamendal)
+
+cameraData2 <- cameraData[!alamendal,]
+cameraData2
+
+grep("Alameda",cameraData$intersection,value=TRUE)
+
+
+grep("JeffStreet",cameraData$intersection)
+
+length(grep("JeffStreet",cameraData$intersection))
+
+#DATA CAMP
+awards <- c("Won 1 Oscar.",
+            "Won 1 Oscar. Another 9 wins & 24 nominations.",
+            "1 win and 2 nominations.",
+            "2 wins & 3 nominations.",
+            "Nominated for 2 Golden Globes. 1 more win & 2 nominations.",
+            "4 wins & 1 nomination.")
+
+sub(".*\\s([0-9]+)\\snomination.*$", "\\1", awards)
+
+
+library(stringr)
+nchar("Jeffrey Leek") #number of characters
+
+substr("Jeffrey Leek", 1, 7) #selects the charcates 1 to 7
+
+substr("Jeffrey Leek", 3, 12) #selects the charcates 3 to 12
+
+paste("Jeffrey","Leek")
+paste("Jeffrey","Leek","is","the","teacher") #put the word together
+
+paste0("Jeffrey","Leek","is","the","teacher") #put the word together without space
+
+str_trim("Jeff      ")
+
+str_trim("Jeff      teacher")
+
+#Names of variables should be
+##All lower case when possible
+##Descriptive (Diagnosis versus Dx)
+##Not duplicated
+##Not have underscores or dots or white spaces
+#Variables with character values
+#Should usually be made into factor variables (depends on application)
+#Should be descriptive (use TRUE/FALSE instead of 0/1 and Male/Female versus 0/1 or M/F)
